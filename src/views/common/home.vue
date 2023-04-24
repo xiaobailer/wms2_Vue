@@ -1,3 +1,4 @@
+<!--
 <template>
   <div class="mod-home">
     <h3>项目介绍</h3>
@@ -9,19 +10,6 @@
       <li>数据切换，通过mock配置对接口数据／mock模拟数据进行切换</li>
       <li>发布时，可动态配置CDN静态资源／切换新旧版本</li>
       <li>演示地址：<a href="http://demo.open.renren.io/renren-fast" target="_blank">http://demo.open.renren.io/renren-fast</a> (账号密码：admin/admin)</li>
-    </ul>
-    <h3>获取帮助</h3>
-    <ul>
-      <li>官方社区：<a href="https://www.renren.io/community" target="_blank">https://www.renren.io/community</a></li>
-      <li>前端Git地址：<a href="https://github.com/renrenio/renren-fast-vue" target="_blank">https://github.com/renrenio/renren-fast-vue</a></li>
-      <li>后台Git地址：<a href="https://gitee.com/renrenio/renren-fast" target="_blank">https://gitee.com/renrenio/renren-fast</a></li>
-      <li>代码生成器：<a href="https://gitee.com/renrenio/renren-generator" target="_blank">https://gitee.com/renrenio/renren-generator</a></li>
-      <li>如需关注项目最新动态，请Watch、Star项目，同时也是对项目最好的支持</li>
-    </ul>
-    <h3>官方QQ群</h3>
-    <ul>
-      <li>高级群：324780204(大牛云集，跟大牛学习新技能)</li>
-      <li>普通群：145799952(学习交流，互相解答各种疑问)</li>
     </ul>
   </div>
 </template>
@@ -36,4 +24,122 @@
     line-height: 1.5;
   }
 </style>
+-->
 
+
+
+<template>
+  <div class="home-container">
+    <h2 class="home-title">仓库管理系统</h2>
+    <p class="home-description">提高物流效率，优化供应链管理</p>
+    <div class="home-card-container">
+      <div class="home-card" @click="$router.push('/inbound-wms2products')">
+        <div class="home-card-header" > 
+          <i class="el-icon-s-management"></i>
+          <span>入库模块</span>
+        </div>
+        <div class="home-card-content">
+          <p>包括商品信息、供应商信息，入库等流程。</p>
+        </div>
+      </div>
+      <div class="home-card" @click="$router.push('/outbound-wms2outbound')">
+        <div class="home-card-header">
+          <i class="el-icon-s-finance"></i>
+          <span>出库模块</span>
+        </div>
+        <div class="home-card-content">
+          <p>包括出库单、出库审核管理等。</p>
+        </div>
+      </div>
+      <div class="home-card" @click="$router.push('/warehouse-warehouse')">
+        <div class="home-card-header">
+          <i class="el-icon-s-order"></i>
+          <span>仓库管理</span>
+        </div>
+        <div class="home-card-content">
+          <p>仓库详细，预警等</p>
+        </div>
+      </div>
+       <div class="home-card" @click="$router.push('/customer-wms2customer')">
+        <div class="home-card-header">
+          <i class="el-icon-s-order"></i>
+          <span>客户模块</span>
+        </div>
+        <div class="home-card-content">
+          <p>客户信息等</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script>
+  export default {
+  }
+</script>
+
+<style scoped>
+.home-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 60px 0;
+}
+
+.home-title {
+  font-size: 32px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.home-description {
+  font-size: 16px;
+  margin-bottom: 40px;
+  color: #666;
+}
+
+.home-card-container {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+}
+
+.home-card {
+  width: 200px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: box-shadow 0.3s ease-in-out;
+}
+
+.home-card:hover {
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+}
+
+.home-card-header {
+  display: flex;
+  align-items: center;
+  padding: 20px;
+  background-color: #f5f5f5;
+}
+
+.home-card-header i {
+  font-size: 24px;
+  margin-right: 10px;
+  color: #409EFF;
+}
+
+.home-card-header span {
+  font-size: 18px;
+  font-weight: bold;
+  color: #333;
+}
+
+.home-card-content {
+  padding: 20px;
+  font-size: 14px;
+  color: #666;
+}
+</style>

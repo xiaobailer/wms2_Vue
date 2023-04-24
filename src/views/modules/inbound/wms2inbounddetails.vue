@@ -6,8 +6,8 @@
       </el-form-item>
       <el-form-item>
         <el-button @click="getDataList()">查询</el-button>
-        <el-button type="primary" @click="addOrUpdateHandle()">新增</el-button>
-        <el-button type="danger" @click="deleteHandle()" :disabled="dataListSelections.length <= 0">批量删除</el-button>
+        <el-button v-if="isAuth('wms:wms2inbounddetails:save')" type="primary" @click="addOrUpdateHandle()">新增</el-button>
+        <el-button v-if="isAuth('wms:wms2inbounddetails:delete')" type="danger" @click="deleteHandle()" :disabled="dataListSelections.length <= 0">批量删除</el-button>
       </el-form-item>
     </el-form>
     <el-table
@@ -23,40 +23,28 @@
         width="50">
       </el-table-column>
       <el-table-column
-        prop="employeeid"
+        prop="inboundId"
         header-align="center"
         align="center"
-        label="员工Id">
+        label="">
       </el-table-column>
       <el-table-column
-        prop="name"
+        prop="productId"
         header-align="center"
         align="center"
-        label="名字">
+        label="">
       </el-table-column>
       <el-table-column
-        prop="sex"
+        prop="quantity"
         header-align="center"
         align="center"
-        label="性别">
+        label="">
       </el-table-column>
       <el-table-column
-        prop="age"
+        prop="price"
         header-align="center"
         align="center"
-        label="年龄">
-      </el-table-column>
-      <el-table-column
-        prop="address"
-        header-align="center"
-        align="center"
-        label="地址">
-      </el-table-column>
-      <el-table-column
-        prop="phone"
-        header-align="center"
-        align="center"
-        label="电话">
+        label="">
       </el-table-column>
       <el-table-column
         fixed="right"
@@ -65,8 +53,8 @@
         width="150"
         label="操作">
         <template slot-scope="scope">
-          <el-button type="text" size="small" @click="addOrUpdateHandle(scope.row.employeeid)">修改</el-button>
-          <el-button type="text" size="small" @click="deleteHandle(scope.row.employeeid)">删除</el-button>
+          <el-button type="text" size="small" @click="addOrUpdateHandle(scope.row.inboundId)">修改</el-button>
+          <el-button type="text" size="small" @click="deleteHandle(scope.row.inboundId)">删除</el-button>
         </template>
       </el-table-column>
     </el-table>
@@ -85,7 +73,7 @@
 </template>
 
 <script>
-  import AddOrUpdate from './employeeinfo-add-or-update'
+  import AddOrUpdate from './wms2inbounddetails-add-or-update'
   export default {
     data () {
       return {
@@ -112,7 +100,7 @@
       getDataList () {
         this.dataListLoading = true
         this.$http({
-          url: this.$http.adornUrl('/wms/employeeinfo/list'),
+          url: this.$http.adornUrl('/wms/wms2inbounddetails/list'),
           method: 'get',
           params: this.$http.adornParams({
             'page': this.pageIndex,
@@ -155,7 +143,7 @@
       // 删除
       deleteHandle (id) {
         var ids = id ? [id] : this.dataListSelections.map(item => {
-          return item.employeeid
+          return item.inboundId
         })
         this.$confirm(`确定对[id=${ids.join(',')}]进行[${id ? '删除' : '批量删除'}]操作?`, '提示', {
           confirmButtonText: '确定',
@@ -163,7 +151,7 @@
           type: 'warning'
         }).then(() => {
           this.$http({
-            url: this.$http.adornUrl('/wms/employeeinfo/delete'),
+            url: this.$http.adornUrl('/wms/wms2inbounddetails/delete'),
             method: 'post',
             data: this.$http.adornData(ids, false)
           }).then(({data}) => {
